@@ -39,6 +39,27 @@ Example workspace file:
 }
 ```
 
+## Workspace Setup Recommendation
+
+For migration, keep both projects in the same VS Code workspace:
+
+- Xamarin.Forms source project (legacy app)
+- .NET MAUI target project (new app)
+- this skills repository
+
+This lets the AI assistant compare code side-by-side and migrate feature-by-feature with these skills.
+
+Example folder layout:
+
+```text
+/workspace/
+  XamarinApp/
+  MauiApp/
+  xamarin-maui-migration-skills/
+```
+
+You can open the parent folder as one workspace, or add all three as folders in a `.code-workspace` file.
+
 ## Prerequisites
 
 - An AI coding assistant that supports workspace skills and reference files.
@@ -114,8 +135,3 @@ For end-to-end migration runs, use this order:
 - Analyze platform-specific migration risks for Android and iOS and output capability parity checks.
 - Migrate Syncfusion controls from Xamarin to MAUI and produce control-wise API/event/method mapping decisions.
 - Convert custom Xamarin renderers to MAUI handlers and provide validation scenarios.
-
-## Notes
-
-- Some control migrations include unresolved items from source guides, such as Nil or Upcoming markers. These should be treated as explicit manual-review tasks.
-- Keep skill references updated as Syncfusion and MAUI APIs evolve.
