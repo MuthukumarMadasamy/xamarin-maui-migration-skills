@@ -1,7 +1,9 @@
 ---
 name: xamarin-maui-syncfusion-migration
-summary: Migrates Syncfusion controls from Xamarin.Forms to .NET MAUI using control-specific migration docs and API mapping guidance.
-version: 1
+description: Companion migration skill for converting Syncfusion Xamarin.Forms controls to .NET MAUI using control-specific mapping guidance.
+metadata:
+  author: "Syncfusion Inc"
+  version: "1.0.1"
 ---
 
 # Xamarin.Forms to .NET MAUI Syncfusion Migration Skill
