@@ -1,7 +1,9 @@
 ---
 name: xamarin-maui-framework-migration
-summary: Reusable migration skill for moving Xamarin.Forms solutions or copied code modules into .NET MAUI using the Microsoft-recommended create-new-project approach.
-version: 1
+description: Baseline migration skill for moving Xamarin.Forms solutions or copied modules to .NET MAUI using a create-new-project workflow.
+metadata:
+  author: "Syncfusion Inc"
+  version: "1.0.0"
 ---
 
 # Xamarin.Forms to .NET MAUI Migration Skill

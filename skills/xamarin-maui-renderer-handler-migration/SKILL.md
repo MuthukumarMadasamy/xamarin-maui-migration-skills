@@ -1,7 +1,9 @@
 ---
 name: xamarin-maui-renderer-handler-migration
-summary: Companion skill focused on migrating Xamarin.Forms custom renderers and effects to .NET MAUI handlers.
-version: 1
+description: Companion migration skill for converting Xamarin.Forms custom renderers and effects to .NET MAUI handlers.
+metadata:
+  author: "Syncfusion Inc"
+  version: "1.0.0"
 ---
 
 # Xamarin.Forms Renderer to .NET MAUI Handler Migration Skill

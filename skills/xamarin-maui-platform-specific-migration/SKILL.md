@@ -1,7 +1,9 @@
 ---
 name: xamarin-maui-platform-specific-migration
-summary: Companion skill focused on Android, iOS, and Windows platform migration details when moving Xamarin.Forms code to .NET MAUI.
-version: 1
+description: Companion migration skill for Android, iOS, and Windows platform-specific tasks when moving Xamarin.Forms code to .NET MAUI.
+metadata:
+  author: "Syncfusion Inc"
+  version: "1.0.0"
 ---
 
 # Xamarin.Forms to .NET MAUI Platform-Specific Migration Skill
