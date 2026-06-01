@@ -1,9 +1,7 @@
 ---
 name: xamarin-maui-syncfusion-migration
-description: Companion migration skill for converting Syncfusion Xamarin.Forms controls to .NET MAUI using control-specific mapping guidance.
-metadata:
-  author: "Syncfusion Inc"
-  version: "1.0.0"
+summary: Migrates Syncfusion controls from Xamarin.Forms to .NET MAUI using control-specific migration docs and API mapping guidance.
+version: 1
 ---
 
 # Xamarin.Forms to .NET MAUI Syncfusion Migration Skill
@@ -95,8 +93,10 @@ Secondary outputs:
 
 3. Namespace and API migration
 1. Replace Xamarin Syncfusion namespaces with MAUI Syncfusion namespaces per control guide.
-2. Apply API renames for properties, enums, events, and classes.
-3. Preserve behavior with explicit notes where one-to-one mapping is not available.
+2. Update XAML namespace declarations for each control (e.g., `xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"`).
+3. Add C# using directives: `using Syncfusion.Maui.Core.Hosting;` (for ConfigureSyncfusionCore) and control-specific namespaces.
+4. Apply API renames for properties, enums, events, and classes.
+5. Preserve behavior with explicit notes where one-to-one mapping is not available.
 
 4. Package and registration alignment
 1. Verify required Syncfusion MAUI packages are referenced for detected controls.
@@ -114,16 +114,35 @@ Secondary outputs:
 3. Validate MauiProgram contains required Syncfusion registration and imports.
 4. Produce report with changed APIs, manual actions, and residual risks.
 
+## Namespace Migration Reference
+
+### C# Using Directives (Required)
+1. **Hosting namespace (required for registration):** `using Syncfusion.Maui.Core.Hosting;`
+   - Provides the `ConfigureSyncfusionCore()` extension method
+2. **Core namespace (for core types):** `using Syncfusion.Maui.Core;`
+3. **Control-specific namespaces:** `using Syncfusion.Maui.Popup;`, `using Syncfusion.Maui.Charts;`, etc.
+
+### XAML Namespace Declarations (Required)
+Pattern: `xmlns:prefix="clr-namespace:Syncfusion.Maui.ControlNamespace;assembly=Syncfusion.Maui.ControlNamespace"`
+
+Examples:
+- **Popup:** `xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"`
+- **Charts:** `xmlns:sfChart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"`
+- **DataGrid:** `xmlns:sfGrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"`
+
 ## Rule examples
 
 Namespace rules:
 1. Syncfusion.*.XForms namespaces must migrate to Syncfusion.Maui.* namespaces per control guide.
-2. Remove stale Xamarin Syncfusion using directives after migration.
+2. Update XAML namespace declarations to match new Syncfusion.Maui.* control namespaces.
+3. Add `using Syncfusion.Maui.Core.Hosting;` to MauiProgram.cs for ConfigureSyncfusionCore().
+4. Remove stale Xamarin Syncfusion using directives after migration.
 
 Registration rules:
-1. MauiProgram must register Syncfusion core using builder.ConfigureSyncfusionCore().
-2. Required hosting namespace imports for Syncfusion registration must be present.
-3. If an app uses only a subset of controls, registration is still required unless explicitly documented otherwise.
+1. MauiProgram must register Syncfusion core using `builder.ConfigureSyncfusionCore()`.
+2. MauiProgram.cs must include `using Syncfusion.Maui.Core.Hosting;` to access ConfigureSyncfusionCore() extension method.
+3. Syncfusion.Maui.Core package must be installed as a baseline dependency.
+4. If an app uses only a subset of controls, registration is still required unless explicitly documented otherwise.
 
 Control mapping rules:
 1. Xamarin SfChart maps to MAUI chart family based on feature usage.
@@ -158,7 +177,13 @@ Related skills:
 Syncfusion migration is complete when:
 1. All detected Xamarin Syncfusion controls have mapping decisions.
 2. Namespace and API rename changes are applied and validated.
-3. Obsolete or unsupported controls have approved replacement plans.
-4. Visual and functional checks are documented for critical screens.
-5. MauiProgram registration includes builder.ConfigureSyncfusionCore() and required imports.
-6. Final report includes blockers, owners, and next actions.
+3. All XAML namespace declarations are updated to Syncfusion.Maui.* patterns.
+4. All C# using directives are updated, including `using Syncfusion.Maui.Core.Hosting;` in MauiProgram.cs.
+5. Obsolete or unsupported controls have approved replacement plans.
+6. Visual and functional checks are documented for critical screens.
+7. MauiProgram registration includes `builder.ConfigureSyncfusionCore()` and required imports:
+   - `using Syncfusion.Maui.Core.Hosting;` (for ConfigureSyncfusionCore extension)
+   - `using Syncfusion.Maui.Core;` (for core types)
+8. Syncfusion.Maui.Core and control-specific packages are installed.
+9. No residual Xamarin Syncfusion namespaces remain in the migrated code.
+10. Final report includes blockers, owners, and next actions.
